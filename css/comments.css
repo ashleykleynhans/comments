@@ -1,57 +1,35 @@
 body {
-    margin: 5px;
-}
-
-.photofinder {
-    margin-top: 40px;
-    text-align: center;
-    width: 50%;
-}
-
-.button {
-    margin-bottom: 20px;
-}
-
-.searchform {
-    margin-bottom: 20px;
-}
-
-#searchbox {
-    width: 340px;
-}
-
-.black {
-    color: #000000;
-}
-
-.grey {
-    color: #cccccc;
-}
-
-.photoitem {
-    background-color: #000000;
-    color: #ffffff;
-    margin-bottom: 50px;
-    border: 1px solid #000;
-    width: 340px;
     padding: 5px;
 }
 
-.tags {
-    font-size: 2em;
-    font-weight: bold;
+.sectionDivider {
+    background-image:url('/images/testFrontEnd_07.jpg');
+    width: 959px;
+    height: 9px;
 }
 
-.photo {
+.categorySection {
+}
+
+.productItem {
     padding: 10px;
+    float: left;
 }
 
-.caption {
-    font-size: 1.2em;
-    font-weight: bold;
+.productItemBottomDivider {
+    background-image:url('/images/testFrontEnd_14.jpg');
+    width: 309px;
+    height: 2px;
 }
 
-.username {
-    font-weight: bold;
-    font-color: #555555;
+.pager {
+    background-image:url('/images/testFrontEnd_24.jpg');
+    width: 1047px;
+    height: 120px;
+}
+
+.footer {
+    background-image:url('/images/testFrontEnd_01.jpg');
+    width: 1047px;
+    height: 113px;
 }

@@ -14,7 +14,7 @@ return array
              * boolean  persistent  use persistent connections?
              */
             'dsn'        => 'mysql:host=localhost;dbname=comments',
-            'username'   => 'root',
+            'username'   => 'comments',
             'password'   => '(0mM3Nt$EnG!n3',
             'persistent' => FALSE,
         ),
