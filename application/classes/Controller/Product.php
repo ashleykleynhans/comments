@@ -13,14 +13,15 @@ class Controller_Product extends Controller
                     ->find();
 
         // Load the commments from the database
-        $product = ORM::factory('Comment')
-                    ->where
-
-        var_dump($product->product_code);
+        $comments = ORM::factory('Comment')
+                    ->where('product_id', '=', $product->product_id)
+                    ->and_where('approved', '=', 1)
+                    ->find_all();
 
         // Instantiate the view and assign the product and comments to the view
         $view = new View('product');
         $view->set('product', $product);
+        $view->set('comments', $comments);
 
         // Display the view including the product information and comments
 		$this->response->body($view);

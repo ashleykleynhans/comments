@@ -30,6 +30,40 @@ body {
     height: 120px;
 }
 
+.comments {
+    padding-top: 15px;
+    margin-left: 360px !important;
+}
+
+.commentsHeading {
+    color: rgb(24, 118, 191);
+    font-weight: bold;
+}
+
+.fancyboxBackground .fancybox-skin {
+    padding: 50px;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+fieldset {
+    padding: 10px;
+}
+
+label {
+    width: 100%;
+    font-weight: normal;
+}
+
+input {
+    width: 300px;
+}
+
+textarea {
+    width: 300px;
+    height: 100px;
+}
+
 .footer {
     background-image:url('/images/testFrontEnd_01.jpg');
     width: 1047px;

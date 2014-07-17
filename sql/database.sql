@@ -45,6 +45,7 @@ INSERT INTO products (`product_id`, `category_id`, `product_code`, `product_pric
 
 CREATE TABLE IF NOT EXISTS comments(
   comment_id int(10) unsigned NOT NULL auto_increment,
+  parent_id int(10) unsigned NOT NULL DEFAULT 0,
   product_id int(10) unsigned NOT NULL,
   user_id int(10) unsigned NOT NULL,
   comment_text text NOT NULL,
@@ -52,6 +53,7 @@ CREATE TABLE IF NOT EXISTS comments(
   created datetime NOT NULL,
   updated timestamp NOT NULL,
   PRIMARY KEY(comment_id),
+  KEY (parent_id),
   KEY (product_id),
   KEY (approved),
   KEY (created),
