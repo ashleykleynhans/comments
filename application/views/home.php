@@ -1,37 +1,42 @@
 <?= View::factory('template/header') ?>
 
+<?php
+    $product_item_count = 0;
+    $product_row_count = 0;
+?>
+
+<?php foreach ($products as $product): ?>
+    <?php if ($product_item_count == 0): ?>
     <div class="categorySection">
+    <?php endif; ?>
         <div class="productItem">
-            <img src="/images/AE001.jpg" height="399" width="310" alt="AE001" title="AE001" />
+            <a href="">
+                <img src="/images/<?= $product->product_code ?>.jpg" height="399" width="310" alt="<?= $product->product_code ?>" title="<?= $product->product_code ?>" />
+            </a>
+            
+            <?php if ($product_row_count == 0): ?>
             <div class="productItemBottomDivider"></div>
+            <?php endif; ?>
         </div>
 
-        <div class="productItem">
-            <img src="/images/HO001.jpg" height="399" width="310" alt="HO001" title="HO001" />
-            <div class="productItemBottomDivider"></div>
-        </div>
+        <?php
+            $product_item_count++;
 
-        <div class="productItem">
-            <img src="/images/HO002.jpg" height="399" width="310" alt="HO002" title="HO002" />
-            <div class="productItemBottomDivider"></div>
-        </div>
+            if ($product_item_count == 3)
+            {
+                $product_item_count = 0;
+                $product_row_count++;
+                echo "    </div>\n";
+                echo "    <div class=\"clearfix\"></div>\n";
+            }
+        ?>
+<?php endforeach; ?>
+
+<?php if ($product_item_count > 0): ?>
     </div>
-
-    <div class="categorySection">
-        <div class="productItem">
-            <img src="/images/AE002.jpg" height="399" width="310" alt="AE002" title="AE002" />
-        </div>
-
-        <div class="productItem">
-            <img src="/images/RA001.jpg" height="399" width="310" alt="RA001" title="RA001" />
-        </div>
-
-        <div class="productItem">
-            <img src="/images/RA002.jpg" height="399" width="310" alt="RA002" title="RA002" />
-        </div>
-    </div>
-
     <div class="clearfix"></div>
+<?php endif; ?>
+
     <div class="pager"></div>
 
 <?= View::factory('template/footer') ?>
