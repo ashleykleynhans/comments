@@ -1,0 +1,57 @@
+body {
+    margin: 5px;
+}
+
+.photofinder {
+    margin-top: 40px;
+    text-align: center;
+    width: 50%;
+}
+
+.button {
+    margin-bottom: 20px;
+}
+
+.searchform {
+    margin-bottom: 20px;
+}
+
+#searchbox {
+    width: 340px;
+}
+
+.black {
+    color: #000000;
+}
+
+.grey {
+    color: #cccccc;
+}
+
+.photoitem {
+    background-color: #000000;
+    color: #ffffff;
+    margin-bottom: 50px;
+    border: 1px solid #000;
+    width: 340px;
+    padding: 5px;
+}
+
+.tags {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.photo {
+    padding: 10px;
+}
+
+.caption {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.username {
+    font-weight: bold;
+    font-color: #555555;
+}
