@@ -23,6 +23,9 @@ class Controller_Product extends Controller
         $view->set('product', $product);
         $view->set('comments', $comments);
 
+        $session = Session::instance();
+        $session->set('product_id', $product->product_id);
+
         // Display the view including the product information and comments
 		$this->response->body($view);
 	}

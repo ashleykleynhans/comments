@@ -132,6 +132,11 @@ Kohana::modules(array(
 	));
 
 /**
+ * Set cookie salt
+ */
+Cookie::$salt = '(0mM3NteNG!n3C0oKi3S@Lt';
+
+/**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
@@ -139,6 +144,12 @@ Route::set('product', 'product/<code>')
 	->defaults(array(
 		'controller' => 'product',
 		'action'     => 'index',
+	));
+
+Route::set('savecomment', 'savecomment')
+	->defaults(array(
+		'controller' => 'comment',
+		'action'     => 'save',
 	));
 
 Route::set('default', '(<controller>(/<action>(/<id>)))')
