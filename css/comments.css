@@ -23,6 +23,8 @@ body {
 }
 
 .pager {
+    margin: 0 0 0 -25px;
+    padding: 0;
     background-image:url('/images/testFrontEnd_24.jpg');
     width: 1047px;
     height: 120px;
