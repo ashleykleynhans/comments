@@ -2,32 +2,32 @@
 
     <div class="categorySection">
         <div class="productItem">
-            <img src="/images/testFrontEnd_09.jpg" />
+            <img src="/images/AE001.jpg" height="399" width="310" alt="AE001" title="AE001" />
             <div class="productItemBottomDivider"></div>
         </div>
 
         <div class="productItem">
-            <img src="/images/testFrontEnd_11.jpg" />
+            <img src="/images/HO001.jpg" height="399" width="310" alt="HO001" title="HO001" />
             <div class="productItemBottomDivider"></div>
         </div>
 
         <div class="productItem">
-            <img src="/images/testFrontEnd_13.jpg" />
+            <img src="/images/HO002.jpg" height="399" width="310" alt="HO002" title="HO002" />
             <div class="productItemBottomDivider"></div>
         </div>
     </div>
 
     <div class="categorySection">
         <div class="productItem">
-            <img src="/images/testFrontEnd_17.jpg" />
+            <img src="/images/AE002.jpg" height="399" width="310" alt="AE002" title="AE002" />
         </div>
 
         <div class="productItem">
-            <img src="/images/testFrontEnd_19.jpg" />
+            <img src="/images/RA001.jpg" height="399" width="310" alt="RA001" title="RA001" />
         </div>
 
         <div class="productItem">
-            <img src="/images/testFrontEnd_20.jpg" />
+            <img src="/images/RA002.jpg" height="399" width="310" alt="RA002" title="RA002" />
         </div>
     </div>
 
