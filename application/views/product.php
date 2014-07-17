@@ -40,7 +40,10 @@
                 <textarea name="email" id="comment"></textarea>
             </fieldset>
 
-            <button type="button" id="saveComment" class="btn btn-success btn-large">Save</button>
+            <div id="buttons">
+                <button type="button" id="saveComment" class="btn btn-success btn-large">Save</button>
+                <button type="button" id="cancelComment" class="btn btn-warning btn-large">Cancel</button>
+            </div>
         </form>
     </div>
 

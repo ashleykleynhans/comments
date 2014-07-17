@@ -42,8 +42,6 @@ body {
 
 .fancyboxBackground .fancybox-skin {
     padding: 50px;
-    background-color: #000000;
-    color: #ffffff;
 }
 
 fieldset {
@@ -62,6 +60,10 @@ input {
 textarea {
     width: 300px;
     height: 100px;
+}
+
+button {
+    margin-left: 10px;
 }
 
 .footer {
