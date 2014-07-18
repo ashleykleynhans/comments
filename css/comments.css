@@ -30,9 +30,12 @@ body {
     height: 120px;
 }
 
-.comments {
+#commentsContainer {
     padding-top: 15px;
     margin-left: 360px !important;
+}
+
+#comments {
 }
 
 .commentsHeading {
@@ -43,7 +46,12 @@ body {
 .comment {
     width: 600px;
     padding: 10px;
-    background-color: #eeeeee;
+    background-color: rgb(235, 236, 241);
+    margin-bottom: 10px;
+}
+
+.commentButton {
+    margin-bottom: 10px;
 }
 
 .commentText {

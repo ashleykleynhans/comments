@@ -50,7 +50,8 @@ class Controller_Comment extends Controller
             $comment->values($commentData);
 
             try {
-                $comment->save();
+                $result = $comment->save();
+                $commentData['comment_id'] = $result->id;
             }
             catch (ORM_Validation_Exception $e)
             {
@@ -64,7 +65,7 @@ class Controller_Comment extends Controller
 
         if (!isset($response))
         {
-            $response = array('result' => 1);
+            $response = array('result' => 1, 'comment' => $commentData);
         }
 
         // Display the view including the product information and comments

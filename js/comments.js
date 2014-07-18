@@ -8,7 +8,7 @@ function validateEmail(email) {
     }
 }
 
-function saveComment() {
+function save() {
     var commentData = new Object();
     commentData.name = $('#name').val();
     commentData.email = $('#email').val();
@@ -39,12 +39,28 @@ function saveComment() {
 
     var addCommentRequest = $.postJSON("/savecomment", commentData, function(data) {});
 
+    addCommentRequest.complete(function(data) {
+        enableButtons();
+    });
+
     addCommentRequest.success(function(data) {
+        if (data.result == 1) {
+            $('#name').val('');
+            $('#email').val('');
+            $('#comment').val('');
+            $('#parentId').val('0');
+
+            $('#comments').append('<div class="comment"><div class="commentText">' +
+                data.comment.comment_text + '<div class="commentDetail">' + data.comment.name  + '&nbsp;&nbsp; - &nbsp;&nbsp;' +
+                data.comment.created + '</div><div class="commentReply"><button class="btn btn-sm btn-success">Reply</button></div></div>');
+        } else {
+            alert(data.message);
+        }
+
         closeLightbox();
     });
 
     addCommentRequest.error(function(data) {
-        enableButtons();
         alert('Failed to save comment');
     });
 }
@@ -59,7 +75,7 @@ function displaySpinner() {
 }
 
 function enableButtons() {
-    $('#buttons').replaceWith('<div id="buttons"><button type="button" id="saveComment" class="btn btn-success btn-large" onclick="saveComment();">Save</button><button type="button" id="cancelComment" class="btn btn-warning btn-large" onclick="cancelComment();">Cancel</button></div>');
+    $('#buttons').replaceWith('<div id="buttons"><button type="button" id="saveComment" class="btn btn-success btn-large" onclick="save();">Save</button><button type="button" id="cancelComment" class="btn btn-warning btn-large" onclick="closeLightbox();">Cancel</button></div>');
 }
 
 // Enable the comment buttons
@@ -81,7 +97,7 @@ $( document ).ready(function() {
     });
 
     $("#saveComment").click(function() {
-        saveComment();
+        save();
     });
 
     $("#cancelComment").click(function() {
