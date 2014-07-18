@@ -19,7 +19,7 @@
     <body>
         <div class="container-fluid">
             <div class="header">
-                <img src="/images/testFrontEnd_03.jpg" />
+                <a href="/"><img src="/images/testFrontEnd_03.jpg" /></a>
             </div>
 
             <div class="search">
