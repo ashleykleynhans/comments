@@ -23,7 +23,7 @@
                             </div>
 
                             <div class="commentReply">
-                                <button class="btn btn-sm btn-success">Reply</button>
+                                <a href="#addComment" class="btn btn-sm btn-success fancybox" data-comment-id="<?= $comment->comment_id ?>">Reply</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -33,7 +33,7 @@
             </div>
 
             <div class="commentButton">
-                <a href="#addComment" class="btn btn-primary fancybox"> New comment</a>
+                <a href="#addComment" class="btn btn-primary fancybox" data-comment-id="0">New comment</a>
             </div>
         </div>
     </div>
@@ -44,6 +44,7 @@
     <div id="addComment" style="display:none;">
         <div id="parentId" style="display:none;">0</div>
         <h4>Add a comment</h4>
+
         <form id="commentForm" action="javascript:void();" method="post">
             <fieldset>
                 <label for="name">Name</label>

@@ -1,3 +1,4 @@
+// Email validation function
 function validateEmail(email) {
     var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
@@ -50,9 +51,11 @@ function save() {
             $('#comment').val('');
             $('#parentId').val('0');
 
+            // Display the new comment on the page
             $('#comments').append('<div class="comment"><div class="commentText">' +
                 data.comment.comment_text + '<div class="commentDetail">' + data.comment.name  + '&nbsp;&nbsp; - &nbsp;&nbsp;' +
-                data.comment.created + '</div><div class="commentReply"><button class="btn btn-sm btn-success">Reply</button></div></div>');
+                data.comment.created + '</div><div class="commentReply">' +
+                '<a href="#addComment" class="btn btn-sm btn-success fancybox" data-comment-id="' + data.comment.comment_id + '">Reply</a></div></div>');
         } else {
             alert(data.message);
         }
@@ -74,11 +77,10 @@ function displaySpinner() {
     $('#buttons').replaceWith('<div id="buttons"><img src="/images/ajax-loader-large.gif" /></div>');
 }
 
+// Enable the comment buttons
 function enableButtons() {
     $('#buttons').replaceWith('<div id="buttons"><button type="button" id="saveComment" class="btn btn-success btn-large" onclick="save();">Save</button><button type="button" id="cancelComment" class="btn btn-warning btn-large" onclick="closeLightbox();">Cancel</button></div>');
 }
-
-// Enable the comment buttons
 
 $( document ).ready(function() {
     jQuery.extend({
@@ -87,7 +89,7 @@ $( document ).ready(function() {
         }
     });
 
-    $(".fancybox").fancybox({
+    $('.fancybox').fancybox({
         wrapCSS: 'fancyboxBackground',
         helpers : { 
             overlay: {
@@ -96,11 +98,16 @@ $( document ).ready(function() {
         }
     });
 
-    $("#saveComment").click(function() {
+    $('#saveComment').click(function() {
         save();
     });
 
-    $("#cancelComment").click(function() {
+    $('#cancelComment').click(function() {
         closeLightbox();
+    });
+
+    $('.fancybox').click(function() {
+        var comment_id = $(this).attr('data-comment-id');
+        $('#parentId').val(comment_id);
     });
 });
