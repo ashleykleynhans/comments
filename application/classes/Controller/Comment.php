@@ -21,7 +21,6 @@ class Controller_Comment extends Controller
         $email = $this->request->post('email');
         $comment = $this->request->post('comment');
         $parentId = $this->request->post('parentid');
-        $user_id = 112233;
 
         if (isset($name))
         {
@@ -35,14 +34,15 @@ class Controller_Comment extends Controller
 
         if (isset($comment))
         {
-            $email = trim($comment);
+            $comment = trim($comment);
         }
 
         if (!empty($name) && !empty($email) && !empty($comment))
         {
             $commentData = array('parent_id'    => $parentId,
                                  'product_id'   => $product_id,
-                                 'user_id'      => $user_id,
+                                 'name'         => $name,
+                                 'email'        => $email,
                                  'comment_text' => $comment,
                                  'created'      => date('Y-m-d H:i:s'));
 

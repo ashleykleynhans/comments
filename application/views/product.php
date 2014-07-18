@@ -11,9 +11,25 @@
             <h4 class="commentsHeading">Comments</h4>
 
             <?php if (count($comments)): ?>
+                <?php foreach($comments as $comment): ?>
+                    <div class="comment">
+                        <div class="commentText">
+                            <?= $comment->comment_text ?>
+                        </div>
+
+                        <div class="commentDetail">
+                            <?= $comment->name ?>&nbsp;&nbsp; - &nbsp;&nbsp;
+                            <?= $comment->created ?>
+                        </div>
+
+                        <div class="commentReply">
+                            <button class="btn btn-sm btn-success">Reply</button>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             <?php else: ?>
                 <p>There aren't any comments yet.</p>
-                <a href="#addComment" class="btn btn-primary fancybox">Add a comment</a>
+                <a href="#addComment" class="btn btn-primary fancybox">New comment</a>
             <?php endif; ?>
         </div>
     </div>

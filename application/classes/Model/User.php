@@ -9,7 +9,6 @@ class Model_User extends ORM {
         'username' => NULL,
         'password' => NULL,
         'fullname' => NULL,
-        'admin'    => NULL,
         'created'  => NULL,
         'updated'  => NULL
     );

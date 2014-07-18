@@ -40,6 +40,27 @@ body {
     font-weight: bold;
 }
 
+.comment {
+    width: 600px;
+    padding: 10px;
+    background-color: #eeeeee;
+}
+
+.commentText {
+    font-size: 0.9em;
+}
+
+.commentDetail {
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 0.6em;
+}
+
+.commentReply {
+    margin-top: 10px;
+    margin-left: -10px;
+}
+
 .fancyboxBackground .fancybox-skin {
     padding: 50px;
 }
