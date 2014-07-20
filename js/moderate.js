@@ -45,7 +45,7 @@ function save() {
     });
 
     updateCommentRequest.success(function(data) {
-        if (data.result == 1) {
+        if (data.result == 1 || data.message == 'Session expired') {
             // Reload the page
             location.reload();
         } else {

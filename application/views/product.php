@@ -39,8 +39,6 @@
                             }
                         }
 
-                    print_r($comments_list); exit;
-
                         function displayComments(array $comments_list, $level = 0)
                         {
                             foreach ($comments_list as $comment)

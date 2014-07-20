@@ -2,13 +2,43 @@
 
 class Controller_Moderate extends Controller
 {
-    public function __construct()
-    {
+	public function action_index()
+	{
+        // Users must be logged in to moderate comments
         $session = Session::instance();
 
         if ($userId = $session->get('userid'))
         {
+            // Load all comments from the database
+            $comments = ORM::factory('Comments')->getModerationComments();
 
+            // Instantiate the view and assign the comments to the view
+            $view = new View('moderate');
+            $view->set('comments', $comments);
+
+            // Display the view including all comments
+		    $this->response->body($view);
+        }
+        else
+        {
+            $this->redirect('login');
+        }
+	}
+
+    public function action_approve()
+    {
+        // Users must be logged in to moderate comments
+        $session = Session::instance();
+
+        if ($userId = $session->get('userid'))
+        {
+            $comment_id = $this->request->param('commentid');
+
+            $comment = ORM::factory('Comments', $comment_id);
+            $comment->approved = '1';
+            $comment->update();
+
+            $this->redirect('moderate');
         }
         else
         {
@@ -16,44 +46,86 @@ class Controller_Moderate extends Controller
         }
     }
 
-	public function action_index()
-	{
-        // Load all comments from the database
-        $comments = ORM::factory('Comments')->getModerationComments();
-
-        // Instantiate the view and assign the comments to the view
-        $view = new View('moderate');
-        $view->set('comments', $comments);
-
-        // Display the view including all comments
-		$this->response->body($view);
-	}
-
-    public function action_approve()
-    {
-        $comment_id = $this->request->param('commentid');
-
-        $comment = ORM::factory('Comments', $comment_id);
-        $comment->approved = '1';
-        $comment->update();
-
-        $this->redirect('moderate');
-    }
-
     public function action_unapprove()
     {
-        $comment_id = $this->request->param('commentid');
+        // Users must be logged in to moderate comments
+        $session = Session::instance();
 
-        $comment = ORM::factory('Comments', $comment_id);
-        $comment->approved = '0';
-        $comment->update();
+        if ($userId = $session->get('userid'))
+        {
+            $comment_id = $this->request->param('commentid');
 
-        $this->redirect('moderate');
+            $comment = ORM::factory('Comments', $comment_id);
+            $comment->approved = '0';
+            $comment->update();
+
+            $this->redirect('moderate');
+        }
+        else
+        {
+            $this->redirect('login');
+        }
     }
 
     public function action_update()
     {
-        var_dump($_POST);
+        // Users must be logged in to moderate comments
+        $session = Session::instance();
+
+        if ($userId = $session->get('userid'))
+        {
+            // Get the input from the form
+            $name = $this->request->post('name');
+            $email = $this->request->post('email');
+            $commentText = $this->request->post('comment');
+            $commentid = $this->request->post('commentid');
+
+            if (isset($name))
+            {
+                $name = trim($name);
+            }
+
+            if (isset($email))
+            {
+                $email = trim($email);
+            }
+
+            if (isset($commentText))
+            {
+                $commentText = trim($commentText);
+            }
+
+            if (!empty($name) && !empty($email) && !empty($commentText))
+            {
+                // Check whether the comment exists
+                $comment = ORM::factory('Comments', $commentid);
+
+                if (isset($comment->comment_id))
+                {
+                    $comment->name = $name;
+                    $comment->email = $email;
+                    $comment->comment_text = $commentText;
+                    $comment->update();
+
+                    $response = array('result' => 1);
+                }
+                else
+                {
+                    $response = array('result' => 0, 'message' => 'Comment not found');
+                }
+            }
+            else
+            {
+                $response = array('result' => 0, 'message' => 'Validation failed');
+            }
+        }
+        else
+        {
+            $response = array('result' => 0, 'message' => 'Session expired');
+        }
+
+        // Return the response to the browser
+        $this->response->body(json_encode($response));
     }
 
 }

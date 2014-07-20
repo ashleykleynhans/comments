@@ -153,7 +153,6 @@ Route::set('logout', 'logout')
         'action'     => 'index',
     ));
 
-
 Route::set('approve', 'moderate/approve/<commentid>')
     ->defaults(array(
         'controller' => 'moderate',
@@ -164,12 +163,6 @@ Route::set('unapprove', 'moderate/unapprove/<commentid>')
     ->defaults(array(
         'controller' => 'moderate',
         'action'     => 'unapprove',
-    ));
-
-Route::set('moderate', 'moderate')
-    ->defaults(array(
-        'controller' => 'moderate',
-        'action'     => 'index',
     ));
 
 Route::set('product', 'product/<code>')
@@ -188,6 +181,12 @@ Route::set('updatecomment', 'updatecomment')
     ->defaults(array(
         'controller' => 'moderate',
         'action'     => 'update',
+    ));
+
+Route::set('moderate', 'moderate')
+    ->defaults(array(
+        'controller' => 'moderate',
+        'action'     => 'index',
     ));
 
 Route::set('default', '(<controller>(/<action>(/<id>)))')
