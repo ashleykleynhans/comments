@@ -14,7 +14,7 @@ function save() {
     commentData.name = $('#name').val();
     commentData.email = $('#email').val();
     commentData.comment = $('#comment').val();
-    commentData.parentid = $('#parentId').val();
+    commentData.parentid = $('#parentid').html();
 
     if ($.trim(commentData.name).length == 0) {
         alert('Please enter your name');
@@ -49,13 +49,34 @@ function save() {
             $('#name').val('');
             $('#email').val('');
             $('#comment').val('');
-            $('#parentId').val('0');
+            $('#parentid').html('0');
 
-            // Display the new comment on the page
-            $('#comments').append('<div class="comment"><div class="commentText">' +
-                data.comment.comment_text + '<div class="commentDetail">' + data.comment.name  + '&nbsp;&nbsp; - &nbsp;&nbsp;' +
+            var margin = 0;
+
+            if (data.comment.parent_id > 0) {
+                // Get the indentation of the parent
+                var parentMargin = $('#comment-' + data.comment.parent_id).css('margin-left');
+
+                // parse parentMargin as int otherwise it gets concatenated as a string
+                margin = parseInt(parentMargin) + 30;
+            }
+
+            // Create a div containing the new comment
+            var newComment = $('<div id="comment-container-' + data.comment.comment_id +'">' +
+                '<div id="comment-' + data.comment.comment_id + '" class="comment" style="margin-left:' + margin + 'px">' +
+                '<div class="commentText">' + data.comment.comment_text + '</div>' +
+                '<div class="commentDetail">' + data.comment.name  + '&nbsp;&nbsp; - &nbsp;&nbsp;' +
                 data.comment.created + '</div><div class="commentReply">' +
-                '<a href="#addComment" class="btn btn-sm btn-success fancybox" data-comment-id="' + data.comment.comment_id + '">Reply</a></div></div>');
+                '<a href="#addComment" class="btn btn-sm btn-success fancybox" data-comment-id="' + data.comment.comment_id +
+                '" id="add-' + data.comment.comment_id + '" onclick="setParentId(this);">Reply</a></div></div></div>');
+
+            if (data.comment.parent_id > 0) {
+                // Display the new comment below its parent
+                $('#comment-container-' + data.comment.parent_id).append(newComment);
+            } else {
+                // Display the new comment on bottom of the comment list
+                $('#comments').append(newComment);
+            }
         } else {
             alert(data.message);
         }
@@ -80,6 +101,12 @@ function displaySpinner() {
 // Enable the comment buttons
 function enableButtons() {
     $('#buttons').replaceWith('<div id="buttons"><button type="button" id="saveComment" class="btn btn-success btn-large" onclick="save();">Save</button><button type="button" id="cancelComment" class="btn btn-warning btn-large" onclick="closeLightbox();">Cancel</button></div>');
+}
+
+function setParentId(element) {
+    var comment_id = $(element).attr('data-comment-id');
+    $('#parentid').html(comment_id);
+    return false;
 }
 
 $( document ).ready(function() {
@@ -107,7 +134,6 @@ $( document ).ready(function() {
     });
 
     $('.fancybox').click(function() {
-        var comment_id = $(this).attr('data-comment-id');
-        $('#parentId').val(comment_id);
+        setParentId(this);
     });
 });

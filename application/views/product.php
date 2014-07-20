@@ -43,16 +43,20 @@
                         {
                             foreach ($comments_list as $comment)
                             {
-                                echo '<div class="comment" style="margin-left:' . $level * 30 . 'px">' . "\n";
-                                echo '    <div class="commentText">' . "\n";
-                                echo '    ' . $comment['comment_text'] . "\n";
-                                echo '    </div>' . "\n\n";
-                                echo '    <div class="commentDetail">' . "\n";
-                                echo '    ' . $comment['name'] . '&nbsp;&nbsp; - &nbsp;&nbsp;';
-                                echo '    ' . $comment['created'] . "\n";
-                                echo '    </div>' . "\n\n";
-                                echo '    <div class="commentReply">' . "\n";
-                                echo '        <a href="#addComment" class="btn btn-sm btn-success fancybox" data-comment-id="'. $comment['comment_id'] .'">Reply</a>' . "\n";
+                                $marginLeft = $level * 30;
+
+                                echo '<div id=comment-container-' . $comment['comment_id'] . '>';
+                                echo '    <div id="comment-' . $comment['comment_id'] . '" class="comment" style="margin-left:' . $marginLeft . 'px">' . "\n";
+                                echo '        <div class="commentText">' . "\n";
+                                echo '        ' . $comment['comment_text'] . "\n";
+                                echo '        </div>' . "\n\n";
+                                echo '        <div class="commentDetail">' . "\n";
+                                echo '        ' . $comment['name'] . '&nbsp;&nbsp; - &nbsp;&nbsp;';
+                                echo '        ' . $comment['created'] . "\n";
+                                echo '        </div>' . "\n\n";
+                                echo '        <div class="commentReply">' . "\n";
+                                echo '            <a href="#addComment" class="btn btn-sm btn-success fancybox" data-comment-id="'. $comment['comment_id'] .'" id="add-' . $comment['comment_id'] . '">Reply</a>' . "\n";
+                                echo '        </div>' . "\n";
                                 echo '    </div>' . "\n";
                                 echo '</div>' . "\n";
 
@@ -82,7 +86,7 @@
     <div class="sectionDivider"></div>
 
     <div id="addComment" style="display:none;">
-        <div id="parentId" style="display:none;">0</div>
+        <div id="parentid" style="display:none;">0</div>
         <h4>Add a comment</h4>
 
         <form id="commentForm" action="javascript:void();" method="post">
