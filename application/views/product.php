@@ -19,18 +19,18 @@
                             $comments_list[$comment->comment_id] = $comment->as_array();
                         }
 
-                        $comments_list = array_reverse($comments_list);
-
                         // Each time a child is found, push it to its parent
-                        foreach ($comments_list as $k => $v)
+                        foreach ($comments_list as $k => &$v)
                         {
                             if ($v['parent_id'] != 0)
                             {
-                                $comments_list[$v['parent_id']]['childs'][] = $v;
+                                $comments_list[$v['parent_id']]['children'][] =& $v;
                             }
                         }
 
-                        // Remove the childs comments from the top level
+                        unset($v);
+
+                        // Remove the children comments from the top level
                         foreach ($comments_list as $k => $v)
                         {
                             if ($v['parent_id'] != 0)
@@ -58,9 +58,9 @@
 
                                 //echo str_repeat('-', $level + 1).' comment '.$info['id']."\n";
 
-                                if (!empty($comment['childs']))
+                                if (!empty($comment['children']))
                                 {
-                                    displayComments($comment['childs'], $level + 1);
+                                    displayComments($comment['children'], $level + 1);
                                 }
                             }
                         }
