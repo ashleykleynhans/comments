@@ -51,7 +51,7 @@ class Controller_Comment extends Controller
 
             try {
                 $result = $comment->save();
-                $commentData['comment_id'] = $result->id;
+                $commentData['comment_id'] = $result->comment_id;
             }
             catch (ORM_Validation_Exception $e)
             {
