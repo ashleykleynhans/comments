@@ -27,6 +27,7 @@
         <h2 class="greyHeader">Comment Moderation</h2>
 
         <?php if (count($comments)): ?>
+            <h5>Click the image in the approved column to change the moderation status</h5>
             <table class="table formattedTable table-striped" cellpadding="5" cellspacing="0" width="100%">
                 <tr valign="middle" class="formattedTableHeader">
                     <th>Category</th>
@@ -49,11 +50,11 @@
                     <td>
                         <?php if ($comment['approved'] == 1): ?>
                             <a href="/moderate/unapprove/<?= $comment['comment_id'] ?>">
-                                <img src="/images/tick_green_20px.png" />
+                                <img src="/images/tick_green_20px.png" title="Unapprove" alt="Tick" width="20" height="20" />
                             </a>
                         <?php else: ?>
                             <a href="/moderate/approve/<?= $comment['comment_id'] ?>">
-                                <img src="/images/cross_red_20px.png" />
+                                <img src="/images/cross_red_20px.png" title="Approve" alt="Cross" width="20" height="20" />
                             </a>
                         <?php endif; ?>
                     </td>
