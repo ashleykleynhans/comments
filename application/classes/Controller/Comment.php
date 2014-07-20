@@ -39,11 +39,14 @@ class Controller_Comment extends Controller
 
         if (!empty($name) && !empty($email) && !empty($comment))
         {
+            // Filter user input to prevent XSS
+            $purifier = HTMLPurifier::instance();
+
             $commentData = array('parent_id'    => $parentId,
                                  'product_id'   => $product_id,
-                                 'name'         => $name,
-                                 'email'        => $email,
-                                 'comment_text' => $comment,
+                                 'name'         => $purifier->purify($name),
+                                 'email'        => $purifier->purify($email),
+                                 'comment_text' => $purifier->purify($comment),
                                  'created'      => date('Y-m-d H:i:s'));
 
             $comment = new Model_Comments();

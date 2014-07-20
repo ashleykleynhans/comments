@@ -102,9 +102,12 @@ class Controller_Moderate extends Controller
 
                 if (isset($comment->comment_id))
                 {
-                    $comment->name = $name;
-                    $comment->email = $email;
-                    $comment->comment_text = $commentText;
+                    // Filter user input to prevent XSS
+                    $purifier = HTMLPurifier::instance();
+
+                    $comment->name = $purifier->purify($name);
+                    $comment->email = $purifier->purify($email);
+                    $comment->comment_text = $purifier->purify($commentText);
                     $comment->update();
 
                     $response = array('result' => 1);

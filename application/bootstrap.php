@@ -194,3 +194,5 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 		'controller' => 'home',
 		'action'     => 'index',
 	));
+
+require_once(APPPATH .'../vendor/autoload.php');

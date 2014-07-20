@@ -1,5 +1,6 @@
 {
 	"require": {
+        "shadowhand/purifier": "v1.2.2",
 		"phpunit/phpunit": "3.7.24",
 		"phing/phing": "dev-master"
 	}
