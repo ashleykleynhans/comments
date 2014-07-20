@@ -11,22 +11,64 @@
             <h4 class="commentsHeading">Comments</h4>
             <div id="comments">
                 <?php if (count($comments)): ?>
-                    <?php foreach($comments as $comment): ?>
-                        <div class="comment">
-                            <div class="commentText">
-                                <?= $comment->comment_text ?>
-                            </div>
+                    <?php
+                        $comments_list = array();
 
-                            <div class="commentDetail">
-                                <?= $comment->name ?>&nbsp;&nbsp; - &nbsp;&nbsp;
-                                <?= $comment->created ?>
-                            </div>
+                        foreach ($comments as $comment)
+                        {
+                            $comments_list[$comment->comment_id] = $comment->as_array();
+                        }
 
-                            <div class="commentReply">
-                                <a href="#addComment" class="btn btn-sm btn-success fancybox" data-comment-id="<?= $comment->comment_id ?>">Reply</a>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+                        $comments_list = array_reverse($comments_list);
+
+                        // Each time a child is found, push it to its parent
+                        foreach ($comments_list as $k => $v)
+                        {
+                            if ($v['parent_id'] != 0)
+                            {
+                                $comments_list[$v['parent_id']]['childs'][] = $v;
+                            }
+                        }
+
+                        // Remove the childs comments from the top level
+                        foreach ($comments_list as $k => $v)
+                        {
+                            if ($v['parent_id'] != 0)
+                            {
+                                unset($comments_list[$k]);
+                            }
+                        }
+
+                    print_r($comments_list); exit;
+
+                        function displayComments(array $comments_list, $level = 0)
+                        {
+                            foreach ($comments_list as $comment)
+                            {
+                                echo '<div class="comment" style="margin-left:' . $level * 30 . 'px">' . "\n";
+                                echo '    <div class="commentText">' . "\n";
+                                echo '    ' . $comment['comment_text'] . "\n";
+                                echo '    </div>' . "\n\n";
+                                echo '    <div class="commentDetail">' . "\n";
+                                echo '    ' . $comment['name'] . '&nbsp;&nbsp; - &nbsp;&nbsp;';
+                                echo '    ' . $comment['created'] . "\n";
+                                echo '    </div>' . "\n\n";
+                                echo '    <div class="commentReply">' . "\n";
+                                echo '        <a href="#addComment" class="btn btn-sm btn-success fancybox" data-comment-id="'. $comment['comment_id'] .'">Reply</a>' . "\n";
+                                echo '    </div>' . "\n";
+                                echo '</div>' . "\n";
+
+                                //echo str_repeat('-', $level + 1).' comment '.$info['id']."\n";
+
+                                if (!empty($comment['childs']))
+                                {
+                                    displayComments($comment['childs'], $level + 1);
+                                }
+                            }
+                        }
+
+                        displayComments($comments_list);
+                    ?>
                 <?php else: ?>
                     <p>There aren't any comments yet.</p>
                 <?php endif; ?>

@@ -72,3 +72,5 @@ CREATE TABLE IF NOT EXISTS users(
   KEY (created),
   KEY (updated)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO users (`user_id`, `username`, `password`, `fullname`, `created`) VALUES(1, 'admin', '$2y$12$D3ENl6K8iJelQRwwxZ5CxeBvk5S59lC05UhCA8My5n4083SNjoVC.', 'Admin User', NOW());
