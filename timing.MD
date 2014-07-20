@@ -4,5 +4,6 @@
 4. Product page layout          - 1 hour
 5. Lightbox layout              - 1 hour
 6. Database design              - 1 hour
-7. Login & Logout functionality - 3 hours
-8. Moderation functionality     - 2 hours (ran into issues with DB updates)
+7. Login & Logout               - 3 hours
+8. Moderation delete/undelete   - 2 hours (ran into issues with DB updates)
+9. Moderation edit              -

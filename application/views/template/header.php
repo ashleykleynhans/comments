@@ -19,11 +19,11 @@
     <body>
         <div class="container-fluid">
             <div class="header">
-                <a href="/"><img src="/images/testFrontEnd_03.jpg" /></a>
+                <a href="/"><img src="<?= URL::base(true) ?>images/testFrontEnd_03.jpg" /></a>
             </div>
 
             <div class="search">
-                <img src="/images/testFrontEnd_05.jpg" />
+                <img src="<?= URL::base(true) ?>images/testFrontEnd_05.jpg" />
             </div>
 
             <div class="sectionDivider"></div>

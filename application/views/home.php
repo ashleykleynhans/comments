@@ -12,8 +12,8 @@
     <div class="categorySection">
     <?php endif; ?>
         <div class="productItem">
-            <a href="/product/<?= $product->product_code ?>">
-                <img src="/images/<?= $product->product_code ?>.jpg" height="399" width="310" alt="<?= $product->product_code ?>" title="<?= $product->product_code ?>" />
+            <a href="<?= URL::site('product/'. $product->product_code, true) ?>">
+                <img src="<?= URL::base(true) ?>/images/<?= $product->product_code ?>.jpg" height="399" width="310" alt="<?= $product->product_code ?>" title="<?= $product->product_code ?>" />
             </a>
 
             <?php if ($product_row_count == 0): ?>

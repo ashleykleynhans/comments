@@ -184,6 +184,12 @@ Route::set('savecomment', 'savecomment')
 		'action'     => 'save',
 	));
 
+Route::set('updatecomment', 'updatecomment')
+    ->defaults(array(
+        'controller' => 'moderate',
+        'action'     => 'update',
+    ));
+
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
 		'controller' => 'home',

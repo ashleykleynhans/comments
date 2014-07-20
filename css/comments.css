@@ -119,3 +119,11 @@ button {
 .formattedTableHeader th {
     background-color:#C0C0C0 !important;
 }
+
+td {
+    text-align: left;
+}
+
+td.center {
+    text-align: center;
+}

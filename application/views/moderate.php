@@ -41,13 +41,13 @@
 
             <?php foreach ($comments as $comment): ?>
                 <tr>
-                    <td><?= $comment['category_name'] ?></td>
-                    <td><?= $comment['product_code'] ?></td>
-                    <td><?= $comment['name'] ?></td>
-                    <td><?= $comment['email'] ?></td>
-                    <td><?= $comment['comment_text'] ?></td>
-                    <td><?= $comment['created'] ?></td>
-                    <td>
+                    <td><a href="#editComment" class="fancybox" data-comment-id="<?= $comment['comment_id'] ?>"><?= $comment['category_name'] ?></a></td>
+                    <td><a href="#editComment" class="fancybox" data-comment-id="<?= $comment['comment_id'] ?>"><?= $comment['product_code'] ?></a></td>
+                    <td><a href="#editComment" class="fancybox" data-comment-id="<?= $comment['comment_id'] ?>"><div id="name-<?= $comment['comment_id'] ?>"><?= $comment['name'] ?></div></a></td>
+                    <td><a href="#editComment" class="fancybox" data-comment-id="<?= $comment['comment_id'] ?>"><div id="email-<?= $comment['comment_id'] ?>"><?= $comment['email'] ?></div></a></td>
+                    <td><a href="#editComment" class="fancybox" data-comment-id="<?= $comment['comment_id'] ?>"><div id="comment-<?= $comment['comment_id'] ?>"><?= $comment['comment_text'] ?></div></a></td>
+                    <td><a href="#editComment" class="fancybox" data-comment-id="<?= $comment['comment_id'] ?>"><?= $comment['created'] ?></a></td>
+                    <td class="center">
                         <?php if ($comment['approved'] == 1): ?>
                             <a href="/moderate/unapprove/<?= $comment['comment_id'] ?>">
                                 <img src="/images/tick_green_20px.png" title="Unapprove" alt="Tick" width="20" height="20" />
@@ -66,6 +66,32 @@
             <h4>No comments to moderate.<h4>
         <?php endif; ?>
 
+        <div id="editComment" style="display:none;">
+            <div id="commentid" style="display:none;">0</div>
+            <h4>Edit comment</h4>
+
+            <form id="commentForm" action="javascript:void();" method="post">
+                <fieldset>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" />
+                </fieldset>
+
+                <fieldset>
+                    <label for="email">Email Address</label>
+                    <input type="text" name="email" id="email" />
+                </fieldset>
+
+                <fieldset>
+                     <label for="comment">Comment</label>
+                     <textarea name="email" id="comment"></textarea>
+                </fieldset>
+
+                <div id="buttons">
+                     <button type="button" id="saveComment" class="btn btn-success btn-large">Save</button>
+                     <button type="button" id="cancelComment" class="btn btn-warning btn-large">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- Javascript -->
@@ -73,6 +99,6 @@
     <?= HTML::script('js/bootstrap.min.js') ?>
     <?= HTML::style('js/fancybox/source/jquery.fancybox.css') ?>
     <?= HTML::script('js/fancybox/source/jquery.fancybox.js') ?>
-    <?= HTML::script('js/comments.js') ?>
+    <?= HTML::script('js/moderate.js') ?>
 </body>
 </html>
