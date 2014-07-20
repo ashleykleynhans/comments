@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
  
-class Model_Comment extends ORM {
+class Model_Comments extends ORM {
 
     protected $_table_name = 'comments';
 
@@ -15,5 +15,18 @@ class Model_Comment extends ORM {
         'created'      => NULL,
         'updated'      => NULL
     );
+
+    protected $_primary_key = 'comment_id';
+
+    public function getModerationComments()
+    {
+        return DB::select('*')
+            ->from('comments')
+            ->join('products', 'left')
+            ->on('products.product_id', '=', 'comments.product_id')
+            ->join('categories', 'left')
+            ->on('categories.category_id', '=', 'products.category_id')
+            ->execute();
+    }
      
 }

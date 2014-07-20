@@ -10,7 +10,7 @@ class Controller_Moderate extends Controller
         if ($userId = $session->get('userid'))
         {
             // Load all comments from the database
-            $comments = ORM::factory('Comment')->find_all();
+            $comments = ORM::factory('Comments')->getModerationComments();
 
             // Instantiate the view and assign the comments to the view
             $view = new View('moderate');
@@ -21,8 +21,30 @@ class Controller_Moderate extends Controller
         }
         else
         {
-            HTTP::redirect('login', 302);
+            $this->redirect('login');
         }
 	}
+
+    public function action_approve()
+    {
+        $comment_id = $this->request->param('commentid');
+
+        $comment = ORM::factory('Comments', $comment_id);
+        $comment->approved = '1';
+        $comment->update();
+
+        $this->redirect('moderate');
+    }
+
+    public function action_unapprove()
+    {
+        $comment_id = $this->request->param('commentid');
+
+        $comment = ORM::factory('Comments', $comment_id);
+        $comment->approved = '0';
+        $comment->update();
+
+        $this->redirect('moderate');
+    }
 
 }

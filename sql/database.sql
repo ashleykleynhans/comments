@@ -22,7 +22,6 @@ CREATE TABLE IF NOT EXISTS products(
   product_id int(10) unsigned NOT NULL auto_increment,
   category_id int(10) unsigned NOT NULL,
   product_code char(5) NOT NULL,
-  product_name varchar(100) NOT NULL,
   product_price decimal(3,2) NOT NULL,
   product_stock tinyint(3) unsigned NOT NULL,
   created datetime NOT NULL,

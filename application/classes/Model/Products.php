@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
  
-class Model_Product extends ORM {
+class Model_Products extends ORM {
 
     protected $_table_name = 'products';
 
@@ -14,5 +14,7 @@ class Model_Product extends ORM {
         'created'       => NULL,
         'updated'       => NULL
     );
+
+    protected $_primary_key = 'product_id';
      
 }

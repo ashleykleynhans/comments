@@ -107,3 +107,15 @@ button {
 #moderation {
     text-align: center;
 }
+
+.formattedTable {
+    border:1px solid #C0C0C0;
+}
+
+.formattedTableSolid {
+    background-color:#EFEFEA;
+}
+
+.formattedTableHeader th {
+    background-color:#C0C0C0 !important;
+}

@@ -35,7 +35,7 @@ class Controller_Login extends Controller
         $msg = '';
 
         if ($username && $password) {
-            $user = ORM::factory('User')
+            $user = ORM::factory('Users')
                 ->where('username', '=', $username)
                 ->find();
 

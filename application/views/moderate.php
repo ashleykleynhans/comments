@@ -27,8 +27,40 @@
         <h2 class="greyHeader">Comment Moderation</h2>
 
         <?php if (count($comments)): ?>
+            <table class="table formattedTable table-striped" cellpadding="5" cellspacing="0" width="100%">
+                <tr valign="middle" class="formattedTableHeader">
+                    <th>Category</th>
+                    <th>Product Code</th>
+                    <th>Name</td>
+                    <th>Email</th>
+                    <th>Comment</th>
+                    <th>Created</th>
+                    <th align="center">Approved</th>
+                </tr>
+
             <?php foreach ($comments as $comment): ?>
+                <tr>
+                    <td><?= $comment['category_name'] ?></td>
+                    <td><?= $comment['product_code'] ?></td>
+                    <td><?= $comment['name'] ?></td>
+                    <td><?= $comment['email'] ?></td>
+                    <td><?= $comment['comment_text'] ?></td>
+                    <td><?= $comment['created'] ?></td>
+                    <td>
+                        <?php if ($comment['approved'] == 1): ?>
+                            <a href="/moderate/unapprove/<?= $comment['comment_id'] ?>">
+                                <img src="/images/tick_green_20px.png" />
+                            </a>
+                        <?php else: ?>
+                            <a href="/moderate/approve/<?= $comment['comment_id'] ?>">
+                                <img src="/images/cross_red_20px.png" />
+                            </a>
+                        <?php endif; ?>
+                    </td>
+                </tr>
             <?php endforeach; ?>
+
+            </table>
         <?php else: ?>
             <h4>No comments to moderate.<h4>
         <?php endif; ?>

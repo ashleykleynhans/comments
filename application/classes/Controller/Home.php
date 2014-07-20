@@ -6,7 +6,7 @@ class Controller_Home extends Controller
 	public function action_index()
 	{
         // Load all products from the database
-        $products = ORM::factory('Product')->find_all();
+        $products = ORM::factory('Products')->find_all();
 
         // Instantiate the view and assign the products to the view
         $view = new View('home');

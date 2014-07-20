@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
  
-class Model_User extends ORM {
+class Model_Users extends ORM {
 
     protected $_table_name = 'users';
 
@@ -12,5 +12,7 @@ class Model_User extends ORM {
         'created'  => NULL,
         'updated'  => NULL
     );
+
+    protected $_primary_key = 'user_id';
      
 }

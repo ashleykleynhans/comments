@@ -8,12 +8,12 @@ class Controller_Product extends Controller
         $product_code = $this->request->param('code');
 
         // Load the particular product from the database
-        $product = ORM::factory('Product')
+        $product = ORM::factory('Products', $product_code)
                     ->where('product_code', '=', $product_code)
                     ->find();
 
         // Load the commments from the database
-        $comments = ORM::factory('Comment')
+        $comments = ORM::factory('Comments')
                     ->where('product_id', '=', $product->product_id)
                     ->and_where('approved', '=', 1)
                     ->find_all();

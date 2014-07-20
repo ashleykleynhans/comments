@@ -46,7 +46,7 @@ class Controller_Comment extends Controller
                                  'comment_text' => $comment,
                                  'created'      => date('Y-m-d H:i:s'));
 
-            $comment = new Model_Comment();
+            $comment = new Model_Comments();
             $comment->values($commentData);
 
             try {
